@@ -12,5 +12,6 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $games = App\Models\Game::all();
+    return view('index', compact('games'));
 });
