@@ -65,4 +65,20 @@ Run the database seeder and you're done
 
 ***Note*** : It's recommended to have a clean database before seeding. You can refresh your migrations at any point to clean the database and seed by running the following command
 
-    php artisan migrate:refresh --seed
+## Front-end dependencies & compilation
+
+**Install NPM dependencies and compile all your JS & SCSS files.**
+
+Switch to the repo folder
+
+    cd games-list
+
+Install all the dependencies using npm
+
+    npm install
+
+Compile all your assets using by running the following command
+
+    npm run dev
+    
+    
