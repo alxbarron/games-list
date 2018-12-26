@@ -1,14 +1,17 @@
-
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import 'global/fonts';
 
 // Variables
-@import 'variables';
+@import 'global/vars';
+
+@import 'global/mixins';
+@import 'global/default';
+@import 'shared/preloader';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// @import '~bootstrap/scss/bootstrap';
+@import 'lib/bootstrap_app';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+.list-game {
+  .img-thumbnail { width: 100px; }
 }

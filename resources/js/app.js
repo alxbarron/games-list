@@ -7,27 +7,43 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+var App = {
+  init: function() {
+    console.log('init');
+  },
+  load: function() {
+    console.log('Assets loaded');
+    App.addEvents();
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+    document.querySelector('#loader-wrapper').classList.add('loaded');
+  },
+  addEvents: function() {
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+    /* Prevent Default in all links with href === '#' */
+    $(document).on('click', 'a[href="#"]', function(e) {
+        e.preventDefault();
+    });
+    /** Good practice, add toggle class only in 'anchor' or 'button' */
+    $(document).on('click', '.toggle', function(e) {
+        e.preventDefault();
+        var _target = e.target.dataset.target;
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+        var $target = _target === undefined ? $(this) : $(_target);
+        $target.toggleClass('active');
+    });
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+    $(document).on('click', '.open-modal', function(e) {
+      var _modal = e.target.dataset.target;
+      $( _modal ).modal({
+        backdrop: 'static',
+        keyboard: false,
+        show: true
+      });
+    });
 
-const app = new Vue({
-    el: '#app'
-});
+  }
+
+}
+
+document.addEventListener("DOMContentLoaded", App.init);
+window.onload = App.load;

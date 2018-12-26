@@ -1,0 +1,95 @@
+@mixin opacity($value:0) {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$value*100+")";
+	filter: alpha(opacity=$value*100);
+	-moz-opacity: $value;
+	-khtml-opacity: $value;
+	opacity: $value;
+}
+
+@mixin transition($transition) {
+	transition: $transition;
+	-webkit-transition: $transition;
+	-moz-transition: $transition;
+	-ms-transition: $transition;
+	-o-transition: $transition;
+}
+
+@mixin transform($transform) {
+	transform: $transform;
+	-webkit-transform: $transform;
+	-moz-transform: $transform;
+	-ms-transform: $transform;
+	-o-transform: $transform;
+}
+
+@mixin border-radius($params: 0px) {
+	-webkit-border-radius: $params;
+	-moz-border-radius: $params;
+	-ms-border-radius: $params;
+	border-radius: $params;
+}
+
+@mixin transform-origin($position: center){
+	-webkit-transform-origin: $position;
+	-moz-transform-origin: $position;
+	-ms-transform-origin: $position;
+	-o-transform-origin: $position;
+	transform-origin: $position;
+}
+
+@mixin on-device($media) {
+    @media only screen and #{$media} {
+        @content;
+    }
+}
+
+@mixin box-shadow($color: #333){
+	-moz-box-shadow:    0px 0px 7px 0px $color;
+  -webkit-box-shadow: 0px 0px 7px 0px $color;
+  box-shadow:         0px 0px 7px 0px $color;
+}
+
+@mixin flex-box__justify($position) {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: $position;
+	-moz-justify-content: $position;
+	-ms-justify-content: $position;
+	-o-justify-content: $position;
+	justify-content: $position;
+
+	-webkit-align-items: $position;
+	-moz-align-items: $position;
+	-ms-justify-content: $position;
+	-o-align-items: $position;
+	align-items: $position;
+}
+
+@mixin center(){
+	position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+
+
+@mixin bg-gradient($deg, $color1, $color2){
+	background-color: $color1;
+	background: -moz-linear-gradient($deg, $color1 0%, $color2 100%);
+	background: -webkit-linear-gradient($deg, $color1 0%, $color2 100%);
+	background: linear-gradient($deg, $color1 0%, $color2 100%);
+}
+
+
+@mixin new-shadow($x, $y, $blur, $spread, $rgba){
+	-webkit-box-shadow: $x $y $blur $spread $rgba;
+	-moz-box-shadow: $x $y $blur $spread $rgba;
+	box-shadow: $x $y $blur $spread $rgba;
+}
