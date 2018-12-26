@@ -36,9 +36,33 @@ class GameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Game $game)
     {
-        //
+        $request->validate([
+          'type'      =>  'required',
+          'name'      =>  'required|unique:games|min:5|max:255',
+          'gender'    =>  'required',
+          'year'      =>  'required',
+          'developer' =>  'required',
+          'price'     =>  'required',
+          'qty'       =>  'required',
+          'cover'     =>  'required|image|mimes:jpeg,png,jpg|max:2000'
+        ]);
+
+        $imageName = str_slug($request->name, '-').'.'.request()->cover->getClientOriginalExtension();
+        request()->cover->move(public_path('img/covers'), $imageName);
+        $game = $game->create([
+          'game_type'   =>  $request->type,
+          'name'        =>  $request->name,
+          'gender'      =>  $request->gender,
+          'launch_year' =>  $request->year,
+          'developer'   =>  $request->developer,
+          'price'       =>  $request->price,
+          'qty'         =>  $request->qty,
+          'cover'       =>  'img/covers/'.$imageName
+        ]);
+
+        return back()->with('success','You have successfully added a new game.');
     }
 
     /**
@@ -47,7 +71,7 @@ class GameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Game $game)
     {
         //
     }
@@ -58,7 +82,7 @@ class GameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Game $game)
     {
         return view('games.edit');
     }
@@ -70,7 +94,7 @@ class GameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Game $game)
     {
         //
     }
@@ -81,7 +105,7 @@ class GameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Game $game)
     {
         //
     }

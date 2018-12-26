@@ -16,9 +16,9 @@ Route::get('/', function () {
     return view('index', compact('games'));
 });
 
-Route::get('/games', 'GameController@index');
-Route::get('/game/{id}/', 'GameController@show');
-Route::get('/game/{id}/edit', 'GameController@edit');
-Route::post('/game/{id}/edit', 'GameController@update');
-Route::get('/game/new', 'GameController@index');
-Route::post('/game/new', 'GameController@store');
+Route::get('games', 'GameController@index');
+Route::get('game/new', 'GameController@create');
+Route::post('game/new', 'GameController@store');
+Route::get('game/{game}', 'GameController@show');
+Route::get('game/{game}/edit', 'GameController@edit');
+Route::post('game/{game}/edit', 'GameController@update');

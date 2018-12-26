@@ -21,8 +21,8 @@
             <th>Year</th>
             <th>Developer</th>
             <th>Price</th>
-            <th>Cantidad</th>
-            <th>Portada</th>
+            <th>Quantity</th>
+            <th>Cover</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -40,7 +40,7 @@
                 <img src="{{ asset($game->cover) }}" alt="Game Cover" class="img-thumbnail">
               </td>
               <td>
-                <a href="/game/{{ $game->id }}/edit">Editar</a>
+                <a href="/game/{{ $game->id }}/edit">Edit</a>
               </td>
             </tr>
           @endforeach
