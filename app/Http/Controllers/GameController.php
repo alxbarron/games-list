@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Game;
+use App\Http\Resources\Game as GameResource;
+use App\Http\Resources\GameCollection;
 
 class GameController extends Controller
 {
@@ -19,6 +21,19 @@ class GameController extends Controller
 
         return view('games.index', compact('games'));
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function list()
+    {
+        $games = Game::all();
+
+        return new GameCollection($games);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -74,6 +89,17 @@ class GameController extends Controller
     public function show(Game $game)
     {
         //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function game(Game $game)
+    {
+        return new GameResource($game);
     }
 
     /**
